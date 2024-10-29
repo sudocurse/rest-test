@@ -1,9 +1,20 @@
-from fastapi import FastAPI
 from fastapi.testclient import TestClient
-
+from unittest.mock import patch
+import pytest
+import uuid
+from app.routers.users import users_db
+from app.routers.posts import posts_db
 from .main import app
 
+
 client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def clear_db():
+    users_db.clear()
+    posts_db.clear()
+    yield
 
 
 def test_read_root():
@@ -11,45 +22,72 @@ def test_read_root():
     assert response.status_code == 200
     assert response.json() == {"message": "API"}
 
+
+@pytest.fixture(autouse=True)
+def mock_uuid():
+    with patch('uuid.uuid4') as mock_uuid:
+        mock_uuid.return_value = uuid.UUID('12345678-1234-5678-1234-567812345678')
+        yield
+
+
 def test_create_user():
-    response = client.post(
-        "/users/",
-        json={"id": 1, "name": "test", "email": "test@email.address"}
-    )
+    response = client.post("/users/", json={"name": "test", "email": "test@email.address"})
+
     assert response.status_code == 200
-    assert response.json() == {"id": 1, "name": "test", "email": "test@email.address"}
+    assert "id" in response.json()
+    assert response.json()["name"] == "test"
+
+
+def test_get_user():
+    response = client.post("/users/", json={"name": "test", "email": "test@email.address"})
+    user_id = response.json()["id"]
+
+    response = client.get(f"/users/{user_id}")
+    assert response.status_code == 200
+    assert response.json() == {"id": user_id, "name": "test", "email": "test@email.address"}
+
 
 def test_get_users():
-    # create
-    response = client.post(
-        "/users/",
-        json={"id": 1, "name": "test", "email": "test@email.address"}
-    )
+    response = client.post("/users/", json={"name": "test", "email": "test@email.address"})
+    user_id = response.json()["id"]
+
     response = client.get("/users/")
     assert response.status_code == 200
-    assert response.json() == [{"id": 1, "name": "test", "email": "test@email.address"}]
+    assert response.json() == [{"id": user_id, "name": "test", "email": "test@email.address"}]
+
 
 def test_update_user():
-    # create
-    response = client.post(
-        "/users/",
-        json={"id": 1, "name": "test", "email": "test@email.address"}
-    )
-    # update
-    response = client.put(
-        "/users/1",
-        json={"id": 1, "name": "updated", "email": "test@email.address"}
-    )
-    assert response.json() == {"id": 1, "name": "updated", "email": "test@email.address"}
+    response = client.post("/users/", json={"name": "test", "email": "test@email.address"})
+    user_id = response.json()["id"]
+
+    response = client.put(f"/users/{user_id}", json={"name": "updated", "email": "test@email.address"})
+    assert response.status_code == 200
+    assert response.json() == {"id": user_id, "name": "updated", "email": "test@email.address"}
+
 
 def test_delete_user():
-    email = "test@email.address"
-    # create
-    response = client.post(
-        "/users/",
-        json={"id": 1, "name": "test", "email": email}
-    )
-    # delete
-    response = client.delete("/users/1")
+    response = client.post("/users/", json={"name": "test", "email": "test@email.address"})
+    user_id = response.json()["id"]
+
+    response = client.delete(f"/users/{user_id}")
+    assert response.status_code == 204
+    response = client.get(f"/users/{user_id}")
+    assert response.status_code == 404
+
+
+def test_create_post():
+    response = client.post("/posts/", json={"title": "test", "content": "test content", "user_id": 1})
+
     assert response.status_code == 200
-    assert response.json() == {"status": "success"}
+
+    assert "id" in response.json()
+    assert response.json()["title"] == "test"
+
+
+def test_get_posts():
+    response = client.post("/posts/", json={"title": "test", "content": "test content", "user_id": 1})
+    post_id = response.json()["id"]
+
+    response = client.get("/posts/")
+    assert response.status_code == 200
+    assert response.json() == [{"id": post_id, "title": "test", "content": "test content", "user_id": 1}]

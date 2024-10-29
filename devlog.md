@@ -20,11 +20,11 @@
         - GET: get all users = id, name, email
         - POST: create a new user; return user in JSON with unique id
     /users/:id:
+        - GET, 404 if not found
         - PUT: update user by id; return updated user in JSON, or 404 if not found
         - DELETE: delete user by id; return 204 if successful, 404 if not found
 
-
-    /posts:
+    - /posts:
         - GET: get all posts = id, title, content, user_id
         - POST: create a new post with above params; return post in JSON with unique id. if user_id is not found, return 400
     /posts/:id:
@@ -78,3 +78,4 @@ Challenges of using a new framework are showing up:
 
 1 hour in, let's take a break.
 Okay, starting up with posts. I'll probably do the ID refactoring now
+- wasn't too bad, just need to create an intermediary object
