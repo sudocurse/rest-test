@@ -90,6 +90,7 @@ Okay, starting up with posts. I'll probably do the ID refactoring now
 
 - Running up a little past the two hour mark here, but should just take a few minutes to deploy via netlify
   - in real life, a lot of duplicated code i'd want to go back and refactor
+  - oop netlify no longer supports python serverless functions
 
 
 ## Test curl commands for all functions with curl -vi / -viX
