@@ -1,17 +1,17 @@
 # TODOs:
 - [x] pick framework
 - [x] pick db
-- [ ] implement API
+- [x] implement API
   - [x] users
-    - [ ] unique id assignment
+    - [x] unique id assignment
       - currently POST and PUT are the same until i get rid of the id param in POST 
-    - [ ] error codes on /users
-  - [ ] posts
-- [ ] write tests
+    - [x] error codes on /users
+  - [x] posts
+- [x] write tests
 - [ ] deploy
-- [ ] write documentation
+- [X] write documentation
 
-- [ ] unify json responses?
+- [X] unify json responses? (n/a)
 
 # Task: Build restful API for managing users and posts
 - options:
@@ -79,3 +79,13 @@ Challenges of using a new framework are showing up:
 1 hour in, let's take a break.
 Okay, starting up with posts. I'll probably do the ID refactoring now
 - wasn't too bad, just need to create an intermediary object
+
+- FastAPI auto generates swagger docs at /docs
+
+- Assumptions I've made: 
+  - Dummy project so no auth or  security, no availability, no pagination or filtering
+    - eg anyone can attest a post to any user
+  - Data is not persistent
+  - User IDs are UUIDs while post IDs are incrementing ints
+
+- Running up a little past the two hour mark here, but should just take a few minutes to deploy via netlify
