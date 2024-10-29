@@ -60,11 +60,6 @@ Design Decisions:
 - Testing?
     - Starlette makes pytest easy so lets go with that
 
-Rather enjoying the straightforwardness of FastAPI so far. Makes JSON-based RESTful design pretty easy
-
-Challenges of using a new framework are showing up:
-- since it does abstract away a bunch of stuff to give REST-first data models i wonder if i should create a custom class for JSON responses (eg indicate success)
-- i gave user_id as an input parameter and kind of steamed ahead, assuming i'd refactor later, but now i'm going to have to refactor most user tests
 
 ```
 curl -X POST http://localhost:8000/users/ \
@@ -72,3 +67,14 @@ curl -X POST http://localhost:8000/users/ \
      -d '{"id": 1, "name": "Ankeet", "email": "my@email.address"}'
      
 ```
+works! 
+
+
+Rather enjoying the straightforwardness of FastAPI so far. Makes JSON-based RESTful design pretty easy
+
+Challenges of using a new framework are showing up:
+- since it does abstract away a bunch of stuff to give REST-first data models i wonder if i should create a custom class for JSON responses (eg indicate success)
+- i gave user_id as an input parameter and kind of steamed ahead, assuming i'd refactor later, but now i'm going to have to refactor most user tests
+
+1 hour in, let's take a break.
+Okay, starting up with posts. I'll probably do the ID refactoring now
