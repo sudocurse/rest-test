@@ -89,3 +89,24 @@ Okay, starting up with posts. I'll probably do the ID refactoring now
   - User IDs are UUIDs while post IDs are incrementing ints
 
 - Running up a little past the two hour mark here, but should just take a few minutes to deploy via netlify
+  - in real life, a lot of duplicated code i'd want to go back and refactor
+
+
+## Test curl commands for all functions with curl -vi / -viX
+```
+curl -viX POST http://localhost:8000/users/ -H 'Content-Type: application/json' -d '{"name": "Name", "email": "abcd"}'
+curl -vi http://localhost:8000/users/1 # 200
+curl -vi http://localhost:8000/users/ # list
+curl -viX PUT http://localhost:8000/users/1 -H 'Content-Type: application/json' -d '{"name": "Changed Name", "email": "abcd"}'
+curl -viX DELETE http://localhost:8000/users/1 # 204
+curl -vi http://localhost:8000/users/1 # 404
+
+ID=$(curl -X POST http://localhost:8000/users/ -H 'Content-Type: application/json' -d '{"name": "Name", "email": "abcd"}' | jq .id)
+curl -viX POST http://localhost:8000/posts/ -H 'Content-Type: application/json' -d '{"title": "Title", "content": "Content", "user_id": '$ID'}'
+curl -vi http://localhost:8000/posts/1 # 200
+curl -vi http://localhost:8000/posts/ # list
+
+curl -viX PUT http://localhost:8000/posts/1 -H 'Content-Type: application/json' -d '{"title": "Changed Title", "content": "Changed Content", "user_id": '$ID'}'
+curl -viX DELETE http://localhost:8000/posts/1 # 204
+curl -vi http://localhost:8000/posts/1 # 404
+```
