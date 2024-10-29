@@ -1,42 +1,45 @@
-annotated-types @ file:///home/conda/feedstock_root/build_artifacts/annotated-types_1716290248287/work
-anyio @ file:///home/conda/feedstock_root/build_artifacts/anyio_1728935693959/work
-certifi @ file:///home/conda/feedstock_root/build_artifacts/certifi_1725278078093/work/certifi
-click @ file:///home/conda/feedstock_root/build_artifacts/click_1692311806742/work
-dnspython @ file:///home/conda/feedstock_root/build_artifacts/dnspython_1728178720319/work
-email_validator @ file:///home/conda/feedstock_root/build_artifacts/email-validator-meta_1718984626658/work
-exceptiongroup @ file:///home/conda/feedstock_root/build_artifacts/exceptiongroup_1720869315914/work
-fastapi @ file:///home/conda/feedstock_root/build_artifacts/fastapi_1730122729340/work
-fastapi-cli @ file:///home/conda/feedstock_root/build_artifacts/fastapi-cli_1728947708687/work
-h11 @ file:///home/conda/feedstock_root/build_artifacts/h11_1664132893548/work
-h2 @ file:///home/conda/feedstock_root/build_artifacts/h2_1634280454336/work
+annotated-types==0.7.0
+anyio==4.6.2.post1
+certifi==2024.8.30
+click==8.1.7
+dnspython==2.7.0
+email_validator==2.2.0
+exceptiongroup==1.2.2
+fastapi==0.115.4
+fastapi-cli==0.0.5
+h11==0.14.0
+h2==4.1.0
 hpack==4.0.0
-httpcore @ file:///home/conda/feedstock_root/build_artifacts/httpcore_1727820890233/work
-httptools @ file:///Users/runner/miniforge3/conda-bld/httptools_1726688157516/work
-httpx @ file:///home/conda/feedstock_root/build_artifacts/httpx_1724778349782/work
-hyperframe @ file:///home/conda/feedstock_root/build_artifacts/hyperframe_1619110129307/work
-idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1726459485162/work
+httpcore==1.0.6
+httptools==0.6.1
+httpx==0.27.2
+hyperframe==6.0.1
+idna==3.10
 iniconfig==2.0.0
-Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1715127149914/work
-markdown-it-py @ file:///home/conda/feedstock_root/build_artifacts/markdown-it-py_1686175045316/work
-MarkupSafe @ file:///Users/runner/miniforge3/conda-bld/markupsafe_1729351342453/work
-mdurl @ file:///home/conda/feedstock_root/build_artifacts/mdurl_1704317613764/work
+Jinja2==3.1.4
+markdown-it-py==3.0.0
+MarkupSafe==3.0.2
+mdurl==0.1.2
 packaging==24.1
+pip==24.2
 pluggy==1.5.0
-pydantic @ file:///home/conda/feedstock_root/build_artifacts/pydantic_1726601062926/work
-pydantic_core @ file:///Users/runner/miniforge3/conda-bld/pydantic-core_1726525003113/work
-Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1714846767233/work
+pydantic==2.9.2
+pydantic_core==2.23.4
+Pygments==2.18.0
 pytest==8.3.3
-python-dotenv @ file:///home/conda/feedstock_root/build_artifacts/python-dotenv-split_1706018097647/work
-python-multipart @ file:///home/conda/feedstock_root/build_artifacts/python-multipart_1730103284353/work
-PyYAML @ file:///Users/runner/miniforge3/conda-bld/pyyaml_1725456256847/work
-rich @ file:///home/conda/feedstock_root/build_artifacts/rich_1729622917073/work/dist
-shellingham @ file:///home/conda/feedstock_root/build_artifacts/shellingham_1698144360966/work
-sniffio @ file:///home/conda/feedstock_root/build_artifacts/sniffio_1708952932303/work
-starlette @ file:///home/conda/feedstock_root/build_artifacts/starlette-recipe_1729101150843/work
+python-dotenv==1.0.1
+python-multipart==0.0.16
+PyYAML==6.0.2
+rich==13.9.3
+setuptools==75.1.0
+shellingham==1.5.4
+sniffio==1.3.1
+starlette==0.41.0
 typer==0.12.5
 typer-slim==0.12.5
-typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1717802530399/work
-uvicorn @ file:///Users/runner/miniforge3/conda-bld/uvicorn-split_1729084453831/work
-uvloop @ file:///Users/runner/miniforge3/conda-bld/uvloop_1729063294010/work
-watchfiles @ file:///Users/runner/miniforge3/conda-bld/watchfiles_1725346959851/work
-websockets @ file:///Users/runner/miniforge3/conda-bld/websockets_1727013343722/work
+typing_extensions==4.12.2
+uvicorn==0.32.0
+uvloop==0.21.0
+watchfiles==0.24.0
+websockets==13.1
+wheel==0.44.0
