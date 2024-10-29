@@ -1,12 +1,17 @@
 # TODOs:
 - [x] pick framework
-- [ ] pick db
+- [x] pick db
 - [ ] implement API
+  - [x] users
+    - [ ] unique id assignment
+      - currently POST and PUT are the same until i get rid of the id param in POST 
+    - [ ] error codes on /users
+  - [ ] posts
 - [ ] write tests
 - [ ] deploy
 - [ ] write documentation
 
-
+- [ ] unify json responses?
 
 # Task: Build restful API for managing users and posts
 - options:
@@ -43,13 +48,27 @@ Bonus: deploy to any cloud platform
 # Notes
 
 Design Decisions:
-- Framework or no?
-    - Normally I'd go for Flask to do this quickly, but I've never used FastAPI, might as well use an interview problem as a chance to learn
+- [x] Framework or no?
+    - Normally I'd go for Flask to do this quickly, but I've never used FastAPI, might as well use an interview problem as a chance to learn and see if it poses challenges i didn't expect
         - *On the job I'd evaluate requirements*
+        - interesting FastAPI features: type hinting, data validation, doc generation, starlette/pydantic under the hood
 
-
-- DB?
-    - debating between sqlite and mongo. *if this was a production app, relational would be my goto because scaling NoSQL has numerous pain points*
-
+- [X] DB? probably going with in-memory
+    - ~~debating between sqlite and mongo. *if this was a production app, relational would be my goto because scaling NoSQL has numerous pain points*~~
 - Deploy cloud?
     - maybe aws or netlify, cross that bridge when I get there
+- Testing?
+    - Starlette makes pytest easy so lets go with that
+
+Rather enjoying the straightforwardness of FastAPI so far. Makes JSON-based RESTful design pretty easy
+
+Challenges of using a new framework are showing up:
+- since it does abstract away a bunch of stuff to give REST-first data models i wonder if i should create a custom class for JSON responses (eg indicate success)
+- i gave user_id as an input parameter and kind of steamed ahead, assuming i'd refactor later, but now i'm going to have to refactor most user tests
+
+```
+curl -X POST http://localhost:8000/users/ \
+     -H 'Content-Type: application/json' \
+     -d '{"id": 1, "name": "Ankeet", "email": "my@email.address"}'
+     
+```
